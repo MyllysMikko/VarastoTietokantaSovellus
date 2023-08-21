@@ -9,6 +9,8 @@ Console.WriteLine("4 - Tulosta kaikki tuotteet");
 Console.WriteLine("5 - Muokkaa tuotenimeä");
 Console.WriteLine("0 - Lopeta sovellus");
 
+Console.WriteLine("Valintasi on:");
+
 while (true)
 {
     input = Convert.ToInt32(Console.ReadLine());
