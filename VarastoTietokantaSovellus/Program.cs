@@ -11,29 +11,29 @@ Console.WriteLine("0 - Lopeta sovellus");
 
 Console.WriteLine("Valintasi on:");
 
-while (true)
+
 {
     input = Convert.ToInt32(Console.ReadLine());
 
     if (input == 1)
     {
-        Console.WriteLine("Valitsit 1:");
+        Console.WriteLine("Lisäsit uuden tuotteen:");
     }
     else if (input == 2)
     {
-        Console.WriteLine("Valitsit 2:");
+        Console.WriteLine("Poistit tuotteen:");
     }
     else if (input == 3)
     {
-        Console.WriteLine("Valitsit 3:");
+        Console.WriteLine("Tulostit eri tuotteiden määrän:");
     }
     else if (input == 4)
     {
-        Console.WriteLine("Valitsit 4:");
+        Console.WriteLine("Tulostit kaikki tuotteet:");
     }
     else if (input == 5)
     {
-        Console.WriteLine("Valitsit 5:");
+        Console.WriteLine("Muokkasit tuotteen nimeä:");
     }
     else if (input == 0)
     {
