@@ -1,4 +1,6 @@
-﻿int input;
+﻿using VarastoTietokantaSovellus;
+
+int input;
 input = 0;
 
 Console.WriteLine("VARASTONHALLINTO");
@@ -11,24 +13,33 @@ Console.WriteLine("0 - Lopeta sovellus");
 
 Console.WriteLine("Valintasi on: ");
 
-while(true)
+while (true)
 {
     input = Convert.ToInt32(Console.ReadLine());
 
     if (input == 1)
     {
-        
+
         Console.WriteLine("Tuotteen id:");
-        Console.WriteLine("Tuotten nimi:");
-        Console.WriteLine("Tuotteen hinta:");
-        Console.WriteLine("Varaston Saldo:");
         string userId = Console.ReadLine();
-        // string userTuoteNimi = Console.ReadLine();
-        // string userTuoteHinta = Console.ReadLine(); 
-        // string userVarastoSaldo = Console.ReadLine(); 
-        if (CheckId (userId) )
+        Console.WriteLine("Tuotten nimi:");
+        string userTuoteNimi = Console.ReadLine();
+        Console.WriteLine("Tuotteen hinta:");
+        string userTuoteHinta = Console.ReadLine();
+        Console.WriteLine("Varaston Saldo:");
+        string userVarastoSaldo = Console.ReadLine();
+        if (CheckId(userId))
         {
-            Console.WriteLine("Lisäsit Tuotteen");
+            if (CheckNimi(userTuoteNimi))
+            {
+                if (CheckNumbers(userTuoteHinta))
+                {
+                    if (CheckNumbers(userVarastoSaldo))
+                    {
+                        Sqlkomennot.AddTuote(userId, userTuoteNimi, userTuoteHinta, userVarastoSaldo);
+                    }
+                }
+            }
         }
 
     }
@@ -37,11 +48,20 @@ while(true)
         Console.WriteLine("Poistit tuotteen:");
         Console.WriteLine("Anna Tuotteen Id:");
         string userId = Console.ReadLine();
+        CheckId(userId);
+        {
+
+        }
     }
     else if (input == 3)
     {
         Console.WriteLine("Tulostit eri tuotteiden määrän:");
         Console.WriteLine("Anna Tuotteen Id:");
+        string userId = Console.ReadLine();
+        CheckId(userId);
+        {
+
+        }
     }
     else if (input == 4)
     {
@@ -51,21 +71,31 @@ while(true)
     {
         Console.WriteLine("Muokkasit tuotteen nimeä:");
         Console.WriteLine("Anna Tuotteen Id:");
+        string userId = Console.ReadLine();
         Console.WriteLine("Anna uusi tuotteelle nimi:");
+        string userNimi = Console.ReadLine();
+        if (CheckId(userId))
+        {
+            if (CheckNimi(userNimi))
+            {
+
+            }
+        }
+
     }
     else if (input == 0)
     {
         Console.WriteLine("Lopetit Sovelluksen:");
         break;
     }
-    
+
 
     bool CheckId(string Id)
     {
-        if (string.IsNullOrWhiteSpace(Id)) 
+        if (string.IsNullOrWhiteSpace(Id))
         {
             Console.WriteLine("Älä syötä tyhjää!");
-            return false; 
+            return false;
         }
         else if (Id.Contains(' '))
         {
@@ -79,9 +109,52 @@ while(true)
         }
         if (Id.Length != 4)
         {
-            Console.WriteLine("Ei saa olla niin lyhyt Id!");
+            Console.WriteLine("Id:n täytyy neljän pitkä!");
             return false;
         }
-            return true;
+        return true;
+    }
+    bool CheckNimi(string nimi)
+    {
+        if (string.IsNullOrWhiteSpace(nimi))
+        {
+            Console.WriteLine("Älä syötä tyhjää!");
+            return false;
+        }
+        else if (nimi.Contains(' '))
+        {
+            Console.WriteLine("Ei välilyöntejä saa olla nimessä!");
+            return false;
+        }
+        if (nimi.Length > 15)
+        {
+            Console.WriteLine("Liian pitkä nimi!");
+            return false;
+        }
+        return true;
+    }
+    bool CheckNumbers(string number)
+    {
+        if (string.IsNullOrWhiteSpace(number))
+        {
+            Console.WriteLine("Älä syötä tyhjää!");
+            return false;
+        }
+        else if (number.Contains(' '))
+        {
+            Console.WriteLine("Ei välilyöntejä saa olla numerossa!");
+            return false;
+        }
+        if (!number.All(char.IsNumber))
+        {
+            Console.WriteLine("Numero pitäisi olla vaan numeroita ei kirjaimia!");
+            return false;
+        }
+        if (number.Length > 15)
+        {
+            Console.WriteLine("Ei saa olla liian pitkä!");
+            return false;
+        }
+        return true;
     }
 }
