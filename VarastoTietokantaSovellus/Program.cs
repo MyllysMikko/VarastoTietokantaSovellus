@@ -46,13 +46,19 @@ while (true)
     }
     else if (input == 2)
     {
-        Console.WriteLine("Poistit tuotteen:");
+        
         Console.WriteLine("Anna Tuotteen Id:");
         string userId = Console.ReadLine();
         CheckId(userId);
         {
-            Sqlkomennot.DeleteTuote(userId);
-            Console.WriteLine("");
+            if (Sqlkomennot.DeleteTuote(userId))
+            {
+                Console.WriteLine($"Tuote {userId} on poistettu Tietokannasta");
+            }
+            else
+            {
+                Console.WriteLine("Tuotetta ei löydetty Tietokannasta");
+            }
         }
     }
     else if (input == 3)
@@ -67,8 +73,7 @@ while (true)
     }
     else if (input == 4)
     {
-        Console.WriteLine("Tulostit kaikki tuotteet:");
-        Sqlkomennot.QueryingTuotteet();
+       Sqlkomennot.QueryingTuotteet();
     }
     else if (input == 5)
     {
@@ -81,7 +86,14 @@ while (true)
         {
             if (CheckNimi(userNimi))
             {
-                Sqlkomennot.ChangeTuoteNimi(userId, userNimi);
+                if (Sqlkomennot.ChangeTuoteNimi(userId, userNimi))
+                {
+                    Console.WriteLine("Tuotteen nimi on muutettu");
+                }
+                else
+                {
+                    Console.WriteLine("Tuotetta ei löydetty Tietokannasta");
+                }
             }
         }
 
