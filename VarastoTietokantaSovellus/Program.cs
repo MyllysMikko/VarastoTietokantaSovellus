@@ -17,15 +17,19 @@ while(true)
 
     if (input == 1)
     {
-        Console.WriteLine("Lisäsit uuden tuotteen:");
+        
         Console.WriteLine("Tuotteen id:");
         Console.WriteLine("Tuotten nimi:");
         Console.WriteLine("Tuotteen hinta:");
         Console.WriteLine("Varaston Saldo:");
         string userId = Console.ReadLine();
-        string userTuoteNimi = Console.ReadLine();
-        string userTuoteHinta = Console.ReadLine();
-        string userVarastoSaldo = Console.ReadLine();
+        // string userTuoteNimi = Console.ReadLine();
+        // string userTuoteHinta = Console.ReadLine(); 
+        // string userVarastoSaldo = Console.ReadLine(); 
+        if (CheckId (userId) )
+        {
+            Console.WriteLine("Lisäsit Tuotteen");
+        }
 
     }
     else if (input == 2)
@@ -56,5 +60,28 @@ while(true)
     }
     
 
-    
+    bool CheckId(string Id)
+    {
+        if (string.IsNullOrWhiteSpace(Id)) 
+        {
+            Console.WriteLine("Älä syötä tyhjää!");
+            return false; 
+        }
+        else if (Id.Contains(' '))
+        {
+            Console.WriteLine("Ei välilyöntejä saa olla Id:ssa!");
+            return false;
+        }
+        if (!Id.All(char.IsNumber))
+        {
+            Console.WriteLine("Id:n pitäisi olla vaan numeroita ei kirjaimia!");
+            return false;
+        }
+        if (Id.Length != 4)
+        {
+            Console.WriteLine("Ei saa olla niin lyhyt Id!");
+            return false;
+        }
+            return true;
+    }
 }
