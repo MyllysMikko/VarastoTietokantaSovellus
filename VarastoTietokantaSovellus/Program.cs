@@ -37,6 +37,7 @@ while (true)
                     if (CheckNumbers(userVarastoSaldo))
                     {
                         Sqlkomennot.AddTuote(userId, userTuoteNimi, userTuoteHinta, userVarastoSaldo);
+                        Console.WriteLine($"Tuote {userTuoteNimi} on lisätty Tietokantaan");
                     }
                 }
             }
@@ -51,6 +52,7 @@ while (true)
         CheckId(userId);
         {
             Sqlkomennot.DeleteTuote(userId);
+            Console.WriteLine("");
         }
     }
     else if (input == 3)
