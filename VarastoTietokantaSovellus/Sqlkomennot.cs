@@ -47,7 +47,7 @@ namespace VarastoTietokantaSovellus
         {
             using Varastotietokanta varastotietokanta = new();
 
-            Console.WriteLine("Rekisteröityneet pelaajat:");
+            Console.WriteLine("Tuotteet:");
             IQueryable<Tuote> allTuotteet = varastotietokanta.Tuotteet;
 
             foreach (Tuote tuote in allTuotteet)
