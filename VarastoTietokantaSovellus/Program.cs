@@ -50,7 +50,7 @@ while (true)
         string userId = Console.ReadLine();
         CheckId(userId);
         {
-
+            Sqlkomennot.DeleteTuote(userId);
         }
     }
     else if (input == 3)
@@ -60,12 +60,13 @@ while (true)
         string userId = Console.ReadLine();
         CheckId(userId);
         {
-
+            Sqlkomennot.QueryingTuoteById(userId);
         }
     }
     else if (input == 4)
     {
         Console.WriteLine("Tulostit kaikki tuotteet:");
+        Sqlkomennot.QueryingTuotteet();
     }
     else if (input == 5)
     {
@@ -78,7 +79,7 @@ while (true)
         {
             if (CheckNimi(userNimi))
             {
-
+                Sqlkomennot.ChangeTuoteNimi(userId, userNimi);
             }
         }
 
