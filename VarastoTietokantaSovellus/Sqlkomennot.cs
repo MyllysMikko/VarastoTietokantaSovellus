@@ -76,7 +76,7 @@ namespace VarastoTietokantaSovellus
 
 
 
-        public static int DeleteTuote(string id)
+        public static bool DeleteTuote(string id)
         {
             using Varastotietokanta varastotietokanta = new();
             Tuote? tuoteDelete = varastotietokanta.Tuotteet.Find(id);
@@ -85,11 +85,11 @@ namespace VarastoTietokantaSovellus
             {
                 varastotietokanta.Remove(tuoteDelete);
                 int affected = varastotietokanta.SaveChanges();
-                return affected;
+                return affected > 0;
             }
             else
             {
-                return 0;
+                return false;
             }
 
         }
