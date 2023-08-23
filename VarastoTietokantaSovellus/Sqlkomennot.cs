@@ -9,7 +9,7 @@ namespace VarastoTietokantaSovellus
     public class Sqlkomennot
     {
 
-        public bool AddTuote(string newId, string newTuotenimi, string newTuotehinta, string newVarastoSaldo)
+        public static bool AddTuote(string newId, string newTuotenimi, string newTuotehinta, string newVarastoSaldo)
         {
             using Varastotietokanta varastotietokanta = new();
             Tuote tuote = new()
@@ -24,6 +24,24 @@ namespace VarastoTietokantaSovellus
             int affected = varastotietokanta.SaveChanges();
 
             return affected == 1;
+        }
+
+        static int DeleteTuote(string id)
+        {
+            using Varastotietokanta varastotietokanta = new();
+            Tuote? tuoteDelete = varastotietokanta.Tuotteet.Find(id);
+
+            if (tuoteDelete != null)
+            {
+                varastotietokanta.Remove(tuoteDelete);
+                int affected = varastotietokanta.SaveChanges();
+                return affected;
+            }
+            else
+            {
+                return 0;
+            }
+
         }
 
 
