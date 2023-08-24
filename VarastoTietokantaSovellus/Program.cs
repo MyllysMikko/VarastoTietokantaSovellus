@@ -49,7 +49,7 @@ while (true)
         
         Console.WriteLine("Anna Tuotteen Id:");
         string userId = Console.ReadLine();
-        CheckId(userId);
+         if (CheckId(userId))
         {
             if (Sqlkomennot.DeleteTuote(userId))
             {
@@ -63,7 +63,6 @@ while (true)
     }
     else if (input == 3)
     {
-        Console.WriteLine("Tulostit eri tuotteiden määrän:");
         Console.WriteLine("Anna Tuotteen Id:");
         string userId = Console.ReadLine();
         if (CheckId(userId))
@@ -114,17 +113,17 @@ while (true)
         }
         else if (Id.Contains(' '))
         {
-            Console.WriteLine("Ei välilyöntejä saa olla Id:ssa!");
+            Console.WriteLine("ID:ssa ei saa olla välilyömtejä!");
             return false;
         }
         if (!Id.All(char.IsNumber))
         {
-            Console.WriteLine("Id:n pitäisi olla vaan numeroita ei kirjaimia!");
+            Console.WriteLine("ID saa siältää vain numeroita!");
             return false;
         }
         if (Id.Length != 4)
         {
-            Console.WriteLine("Id:n täytyy neljän pitkä!");
+            Console.WriteLine("Id:n täytyy olla neljän pitkä!");
             return false;
         }
         return true;
@@ -138,7 +137,7 @@ while (true)
         }
         else if (nimi.Contains(' '))
         {
-            Console.WriteLine("Ei välilyöntejä saa olla nimessä!");
+            Console.WriteLine("Nimessä ei saa olla välilyöntejä!");
             return false;
         }
         if (nimi.Length > 15)
@@ -157,17 +156,17 @@ while (true)
         }
         else if (number.Contains(' '))
         {
-            Console.WriteLine("Ei välilyöntejä saa olla numerossa!");
+            Console.WriteLine("Numerossa ei saa olla välilyöntejä!");
             return false;
         }
         if (!number.All(char.IsNumber))
         {
-            Console.WriteLine("Numero pitäisi olla vaan numeroita ei kirjaimia!");
+            Console.WriteLine("Numero ei saa siältää kirjaimia!");
             return false;
         }
         if (number.Length > 15)
         {
-            Console.WriteLine("Ei saa olla liian pitkä!");
+            Console.WriteLine("Numero on liian pitkä!");
             return false;
         }
         return true;
