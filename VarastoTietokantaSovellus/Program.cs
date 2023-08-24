@@ -1,7 +1,6 @@
 ﻿using VarastoTietokantaSovellus;
 
 int input;
-input = 0;
 
 Console.WriteLine("VARASTONHALLINTO");
 Console.WriteLine("1 - Lisää uusi tuote");
@@ -11,22 +10,27 @@ Console.WriteLine("4 - Tulosta kaikki tuotteet");
 Console.WriteLine("5 - Muokkaa tuotenimeä");
 Console.WriteLine("0 - Lopeta sovellus");
 
-Console.WriteLine("Valintasi on: ");
+
 
 while (true)
 {
-    input = Convert.ToInt32(Console.ReadLine());
+    do
+    {
+        Console.Write("Valitse toiminto: ");
+    } while (!int.TryParse(Console.ReadLine(), out input));
+
+    
 
     if (input == 1)
     {
 
-        Console.WriteLine("Tuotteen id:");
+        Console.Write("Tuotteen id: ");
         string userId = Console.ReadLine();
-        Console.WriteLine("Tuotten nimi:");
+        Console.Write("Tuotten nimi: ");
         string userTuoteNimi = Console.ReadLine();
-        Console.WriteLine("Tuotteen hinta:");
+        Console.Write("Tuotteen hinta: ");
         string userTuoteHinta = Console.ReadLine();
-        Console.WriteLine("Varaston Saldo:");
+        Console.Write("Varaston Saldo: ");
         string userVarastoSaldo = Console.ReadLine();
         if (CheckId(userId))
         {
@@ -47,13 +51,13 @@ while (true)
     else if (input == 2)
     {
         
-        Console.WriteLine("Anna Tuotteen Id:");
+        Console.Write("Anna Tuotteen Id: ");
         string userId = Console.ReadLine();
          if (CheckId(userId))
         {
             if (Sqlkomennot.DeleteTuote(userId))
             {
-                Console.WriteLine($"Tuote {userId} on poistettu Tietokannasta");
+                Console.WriteLine($"Tuote ID:llä {userId} on poistettu Tietokannasta");
             }
             else
             {
@@ -63,7 +67,7 @@ while (true)
     }
     else if (input == 3)
     {
-        Console.WriteLine("Anna Tuotteen Id:");
+        Console.Write("Anna Tuotteen Id: ");
         string userId = Console.ReadLine();
         if (CheckId(userId))
         {
@@ -76,10 +80,9 @@ while (true)
     }
     else if (input == 5)
     {
-        Console.WriteLine("Muokkasit tuotteen nimeä:");
-        Console.WriteLine("Anna Tuotteen Id:");
+        Console.Write("Anna Tuotteen Id: ");
         string userId = Console.ReadLine();
-        Console.WriteLine("Anna uusi tuotteelle nimi:");
+        Console.Write("Anna uusi tuotteelle nimi: ");
         string userNimi = Console.ReadLine();
         if (CheckId(userId))
         {
@@ -99,7 +102,7 @@ while (true)
     }
     else if (input == 0)
     {
-        Console.WriteLine("Lopetit Sovelluksen:");
+        Console.WriteLine("Lopetit Sovelluksen");
         break;
     }
 
@@ -135,11 +138,7 @@ while (true)
             Console.WriteLine("Älä syötä tyhjää!");
             return false;
         }
-        else if (nimi.Contains(' '))
-        {
-            Console.WriteLine("Nimessä ei saa olla välilyöntejä!");
-            return false;
-        }
+
         if (nimi.Length > 15)
         {
             Console.WriteLine("Liian pitkä nimi!");
