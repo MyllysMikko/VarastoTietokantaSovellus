@@ -113,7 +113,7 @@ while (true)
         }
         else if (Id.Contains(' '))
         {
-            Console.WriteLine("ID:ssa ei saa olla välilyömtejä!");
+            Console.WriteLine("ID:ssa ei saa olla välilyöntejä!");
             return false;
         }
         if (!Id.All(char.IsNumber))
