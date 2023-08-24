@@ -66,7 +66,7 @@ while (true)
         Console.WriteLine("Tulostit eri tuotteiden määrän:");
         Console.WriteLine("Anna Tuotteen Id:");
         string userId = Console.ReadLine();
-        CheckId(userId);
+        if (CheckId(userId))
         {
             Sqlkomennot.QueryingTuoteById(userId);
         }
